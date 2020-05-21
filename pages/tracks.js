@@ -5,6 +5,7 @@ import api from '../services/api';
 import RanksPodium from '../components/RanksPodium';
 import RanksList from '../components/RanksList';
 import { FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
+import ReactGA from 'react-ga';
 
 export default function Tracks(){
     const [topTracks, setTopTracks] = useState([]);
