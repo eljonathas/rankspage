@@ -1,8 +1,15 @@
 import { FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import Head from 'next/head';
+import { useEffect } from 'react';
+import ReactGA from 'react-ga';
 
 export default function Soundcloud(){
+    useEffect(() => {
+        ReactGA.initialize('UA-107769128-1');
+        ReactGA.pageview(window.location.pathname + window.location.search);
+    }, []);
+
     return (
         <div className="ranks__container">
             <Head>

@@ -5,6 +5,7 @@ import RanksPodium from '../components/RanksPodium';
 import RanksList from '../components/RanksList';
 import { FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
 import api from '../services/api';
+import ReactGA from 'react-ga';
 
 export default function Famous(){
     const [topUsers, setTopUsers] = useState([]);
@@ -15,6 +16,9 @@ export default function Famous(){
             setTopUsers(response.data);
             setIsLoading(false);
         });
+
+        ReactGA.initialize('UA-107769128-1');
+        ReactGA.pageview(window.location.pathname + window.location.search);
     }, []);
 
     return (

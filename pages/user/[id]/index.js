@@ -5,6 +5,7 @@ import Link from 'next/link';
 import api from '../../../services/api';
 import Head from 'next/head';
 import UserRows from '../../../components/UserRows';
+import ReactGA from 'react-ga';
 
 
 export default function User(){
@@ -47,6 +48,9 @@ export default function User(){
                 document.getElementsByClassName('ranks__container')[0].innerHTML = '<p>Usuário inválido</p>';
             }
         });
+
+        ReactGA.initialize('UA-107769128-1');
+        ReactGA.pageview(window.location.pathname + window.location.search);
     }, []);
 
     function parseMsToDate(time){

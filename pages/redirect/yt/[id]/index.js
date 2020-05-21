@@ -3,6 +3,7 @@ import { FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import Head from 'next/head';
 import SongRedirect from '../../../../components/SongRedirect';
+import ReactGA from 'react-ga';
 
 export default function Youtube(){
     const [songId, setSongId] = useState('');
@@ -12,6 +13,9 @@ export default function Youtube(){
             return document.getElementsByClassName('ranks__container')[0].innerHTML = '<p>Música inválida</p>';
 
         setSongId(window.location.pathname.match(/yt+\/[A-z0-9].*/)[0].split("yt/")[1]);
+        
+        ReactGA.initialize('UA-107769128-1');
+        ReactGA.pageview(window.location.pathname + window.location.search);
     }, []);
 
     return (

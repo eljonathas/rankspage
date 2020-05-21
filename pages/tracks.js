@@ -15,6 +15,9 @@ export default function Tracks(){
             setTopTracks(response.data);
             setIsLoading(false);
         });
+
+        ReactGA.initialize('UA-107769128-1');
+        ReactGA.pageview(window.location.pathname + window.location.search);
     }, []);
 
     return (
