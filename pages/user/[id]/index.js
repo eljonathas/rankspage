@@ -5,7 +5,7 @@ import Link from 'next/link';
 import api from '../../../services/api';
 import Head from 'next/head';
 import UserRows from '../../../components/UserRows';
-// import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 
 
 export default function User(){
@@ -49,8 +49,8 @@ export default function User(){
             }
         });
 
-        // ReactGA.initialize('UA-0000000-0');
-        // ReactGA.pageview(window.location.pathname + window.location.search);
+        ReactGA.initialize('UA-107769128-1');
+        ReactGA.pageview(window.location.pathname + window.location.search);
     }, []);
 
     function parseMsToDate(time){

@@ -5,7 +5,7 @@ import api from '../../services/api';
 import RanksPodium from '../../components/RanksPodium';
 import RanksList from '../../components/RanksList';
 import { FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
-// import ReactGA from 'react-ga';
+import ReactGA from 'react-ga';
 
 export default function Tracks(){
     const [topTracks, setTopTracks] = useState([]);
@@ -17,8 +17,8 @@ export default function Tracks(){
             setIsLoading(false);
         });
 
-        // ReactGA.initialize('UA-0000000-0');
-        // ReactGA.pageview(window.location.pathname + window.location.search);
+        ReactGA.initialize('UA-0000000-0');
+        ReactGA.pageview(window.location.pathname + window.location.search);
     }, []);
 
     return (
