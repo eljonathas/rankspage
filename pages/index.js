@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import {FaLongArrowAltRight} from 'react-icons/fa'
+<<<<<<< HEAD
 // import ReactGA from 'react-ga';
 
 export default function Home() {
@@ -11,6 +12,10 @@ export default function Home() {
         // ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
+=======
+
+export default function Home() {
+>>>>>>> 78ddc122e22a623cbd047139724458cd98a3f0aa
   return (
     <div className="ranks__container">
       <Head>
