@@ -2,13 +2,13 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect } from 'react';
 import {FaLongArrowAltRight} from 'react-icons/fa'
-import ReactGA from 'react-ga';
+// import ReactGA from 'react-ga';
 
 export default function Home() {
   
   useEffect(() => {
-    ReactGA.initialize('UA-107769128-1');
-    ReactGA.pageview(window.location.pathname + window.location.search);
+        // ReactGA.initialize('UA-0000000-0');
+        // ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
   return (
