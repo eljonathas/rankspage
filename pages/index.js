@@ -20,21 +20,21 @@ export default function Home() {
         <h1>Qual rank você deseja visualizar?</h1>
       </header>
       <main className="ranks__guides">
-        <Link href="/famous">
+        <Link href="/ranks/famous">
           <div className="ranks__box">
             <i className="rks__icon rks-popular"></i>
             <h1 className="box__title">Famosos</h1>
             <p className="box__description">Lista dos usuários com mais seguidores na sala</p>
           </div>
         </Link>
-        <Link href="/djs">
+        <Link href="/ranks/djs">
           <div className="ranks__box">
             <i className="rks__icon rks-dj"></i>
             <h1 className="box__title">Melhores DJs</h1>
             <p className="box__description">Lista com os DJs que mais receberam super votos na sala</p>
           </div>
         </Link>
-        <Link href="/tracks">
+        <Link href="/ranks/tracks">
           <div className="ranks__box">
             <i className="rks__icon rks-track"></i>
             <h1 className="box__title">Somzera</h1>

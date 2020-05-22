@@ -1,19 +1,19 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import RanksPodium from '../components/RanksPodium';
-import RanksList from '../components/RanksList';
-import { FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
 import api from '../services/api';
+import RanksPodium from '../../components/RanksPodium';
+import RanksList from '../../components/RanksList';
+import { FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
 import ReactGA from 'react-ga';
 
-export default function Famous(){
-    const [topUsers, setTopUsers] = useState([]);
+export default function Djs(){
+    const [topDjs, setTopDjs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        api.get('/top/users').then(response => {
-            setTopUsers(response.data);
+        api.get('/top/djs').then(response => {
+            setTopDjs(response.data);
             setIsLoading(false);
         });
 
@@ -24,34 +24,34 @@ export default function Famous(){
     return (
         <div className="ranks__container">
             <Head>
-                <title>{(!isLoading && 'Usuários mais famosos') || 'Carregando'} - Radio Brasil</title>
+                <title>{(!isLoading && 'DJs mais elogiados') || 'Carregando'} - Radio Brasil</title>
             </Head>
             <header className="ranks__header">
-                <h1 className="ranks__title">Usuários com mais seguidores atualmente</h1>
+                <h1 className="ranks__title">Os melhores DJs da sala atualmente</h1>
                 {
                     (() => {
-                        if(!isLoading){    
-                            if(topUsers.length >= 3){
+                        if(!isLoading){
+                            if(topDjs.length >= 3){
                                 return (
                                     <RanksPodium 
-                                        first={topUsers[0].username} 
-                                        first_id={topUsers[0].pid}
-                                        first_value={topUsers[0].allfans} 
+                                        first={topDjs[0].username} 
+                                        first_id={topDjs[0].pid}
+                                        first_value={topDjs[0].bigwoots} 
 
-                                        second={topUsers[1].username } 
-                                        second_id={topUsers[1].pid}
-                                        second_value={topUsers[1].allfans}  
+                                        second={topDjs[1].username } 
+                                        second_id={topDjs[1].pid}
+                                        second_value={topDjs[1].bigwoots}  
 
-                                        third={topUsers[2].username } 
-                                        third_id={topUsers[2].pid}
-                                        third_value={topUsers[2].allfans}  
+                                        third={topDjs[2].username } 
+                                        third_id={topDjs[2].pid}
+                                        third_value={topDjs[2].bigwoots}  
 
                                         link="/user/"
                                     />
                                 )
                             }else{
                                 return (
-                                    <p className="info__center podium">Não há usuários para serem exibidos</p>
+                                    <p className="info__center podium">Não há djs para serem exibidos</p>
                                 )
                             }
                         }else{
@@ -67,7 +67,7 @@ export default function Famous(){
                 }
             </header>
             <main className="ranks__main">
-                <h1 className="main_title">Veja a posição de outros usuários</h1>
+                <h1 className="main_title">Veja a colocação de outros DJs favoritos</h1>
                 {
                     (isLoading && (
                         <>
@@ -80,21 +80,21 @@ export default function Famous(){
                             <div className="row__loader"></div>
                             <div className="row__loader"></div>
                         </>
-                    )) || (topUsers.length > 3 ? topUsers.map((user, index) => {
+                    )) || (topDjs.length > 3 ? topDjs.map((user, index) => {
                         if(index > 2)
                             return (
                                 <RanksList
                                     key={index}
                                     position={index+1} 
                                     name={user.username} 
-                                    value={user.allfans} 
+                                    value={user.bigwoots} 
                                     link={`/user/`}
                                     data_id={user.pid}
-                                    type="FÃS"
+                                    type="VOTOS" 
                                 />
                             )
                     }) : (
-                        <p className="info__center">Não há mais usuário para serem exibidos</p>
+                        <p className="info__center">Não há mais djs para serem exibidos</p>
                     ))
                 }
             </main>
