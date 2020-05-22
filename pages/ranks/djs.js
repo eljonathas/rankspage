@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import api from '../services/api';
+import api from '../../services/api';
 import RanksPodium from '../../components/RanksPodium';
 import RanksList from '../../components/RanksList';
 import { FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
