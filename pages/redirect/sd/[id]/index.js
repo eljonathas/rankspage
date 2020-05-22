@@ -18,7 +18,7 @@ export default function Soundcloud(){
             <h3>Opa! Infelizmente não podemos redirecionar você para esta música por aqui.<br/>Mesmo assim, você pode tentar procurar pelo seu nome no site de origem.</h3>
             <footer>
                 <div className="footer__buttons">
-                    <Link href="/tracks"><a className="to__room back"><FaLongArrowAltLeft/><p>Voltar</p></a></Link>
+                    <Link href="/ranks/tracks"><a className="to__room back"><FaLongArrowAltLeft/><p>Voltar</p></a></Link>
                     <a href={`https://soundcloud.com}`} className="to__room custom"><p>Ir para o Soundcloud</p><FaLongArrowAltRight></FaLongArrowAltRight></a>
                 </div>
                 <p className="creator__credits">Made with <i className="rks__icon rks-love"></i> by <a href="https://github.com/eljonathas" target="_blank">TheMars</a></p>
