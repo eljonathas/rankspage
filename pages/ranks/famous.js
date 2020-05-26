@@ -33,21 +33,32 @@ export default function Famous(){
                         if(!isLoading){    
                             if(topUsers.length >= 3){
                                 return (
-                                    <RanksPodium 
-                                        first={topUsers[0].username} 
-                                        first_id={topUsers[0].pid}
-                                        first_value={topUsers[0].allfans} 
-
-                                        second={topUsers[1].username } 
-                                        second_id={topUsers[1].pid}
-                                        second_value={topUsers[1].allfans}  
-
-                                        third={topUsers[2].username } 
-                                        third_id={topUsers[2].pid}
-                                        third_value={topUsers[2].allfans}  
-
-                                        link="/user/"
-                                    />
+                                    <div className="ranks__podium">
+                                        <RanksPodium 
+                                            name={topUsers[1].username} 
+                                            value={topUsers[1].allfans}
+                                            link={`/user/[id]`}
+                                            as={`/user/${topUsers[1].pid}`}
+                                            height={6}
+                                            step={2}
+                                        />
+                                        <RanksPodium 
+                                            name={topUsers[0].username} 
+                                            value={topUsers[0].allfans}
+                                            link={`/user/[id]`}
+                                            as={`/user/${topUsers[0].pid}`}
+                                            height={8}
+                                            step={1}
+                                        />
+                                        <RanksPodium 
+                                            name={topUsers[2].username} 
+                                            value={topUsers[2].allfans}
+                                            link={`/user/[id]`}
+                                            as={`/user/${topUsers[2].pid}`}
+                                            height={4}
+                                            step={3}
+                                        />
+                                    </div>
                                 )
                             }else{
                                 return (

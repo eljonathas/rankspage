@@ -1,8 +1,8 @@
 const axios = require('axios');
 
-// api reference (origin https://radbot-api.herokuapp.com/)
+// api reference (origin https://api.radiobrasil.site/)
 const api = axios.create({
-    baseURL: 'https://api.radiobrasil.site/',
+    baseURL: 'https://api.radiobrasil.site',
 });
 
 module.exports = api;

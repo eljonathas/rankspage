@@ -33,23 +33,32 @@ export default function Tracks(){
                         if(!isLoading){
                             if(topTracks.length >= 3){
                                 return (
-                                    <RanksPodium 
-                                        first={topTracks[0].author+' - '+topTracks[0].name} 
-                                        first_id={`${topTracks[0].format}/${topTracks[0].mid}`}
-                                        first_value={topTracks[0].votes} 
-
-                                        second={topTracks[1].author+' - '+topTracks[1].name} 
-                                        second_id={`${topTracks[1].format}/${topTracks[1].mid}`}
-                                        second_value={topTracks[1].votes}  
-
-                                        third={topTracks[2].author+' - '+topTracks[2].name} 
-                                        third_id={`${topTracks[2].format}/${topTracks[2].mid}`}
-                                        third_value={topTracks[2].votes} 
-                                        
-                                        link={`/redirect/`}
-
-                                        format="[format]/"
-                                    />
+                                    <div className="ranks__podium">
+                                        <RanksPodium 
+                                            name={topTracks[1].author+' - '+topTracks[1].name} 
+                                            value={topTracks[1].votes}
+                                            link={`/redirect/${topTracks[1].format}/[id]`}
+                                            as={`/redirect/${topTracks[1].format}/${topTracks[1].mid}`}
+                                            height={6}
+                                            step={2}
+                                        />
+                                        <RanksPodium 
+                                            name={topTracks[0].author+' - '+topTracks[0].name} 
+                                            value={topTracks[0].votes}
+                                            link={`/redirect/${topTracks[0].format}/[id]`}
+                                            as={`/redirect/${topTracks[0].format}/${topTracks[0].mid}`}
+                                            height={8}
+                                            step={1}
+                                        />
+                                        <RanksPodium 
+                                            name={topTracks[2].author+' - '+topTracks[2].name} 
+                                            value={topTracks[2].votes}
+                                            link={`/redirect/${topTracks[2].format}/[id]`}
+                                            as={`/redirect/${topTracks[2].format}/${topTracks[2].mid}`}
+                                            height={4}
+                                            step={3}
+                                        />
+                                    </div>
                                 )
                             }else{
                                 return (

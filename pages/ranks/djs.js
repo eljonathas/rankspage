@@ -33,21 +33,32 @@ export default function Djs(){
                         if(!isLoading){
                             if(topDjs.length >= 3){
                                 return (
-                                    <RanksPodium 
-                                        first={topDjs[0].username} 
-                                        first_id={topDjs[0].pid}
-                                        first_value={topDjs[0].bigwoots} 
-
-                                        second={topDjs[1].username } 
-                                        second_id={topDjs[1].pid}
-                                        second_value={topDjs[1].bigwoots}  
-
-                                        third={topDjs[2].username } 
-                                        third_id={topDjs[2].pid}
-                                        third_value={topDjs[2].bigwoots}  
-
-                                        link="/user/"
-                                    />
+                                    <div className="ranks__podium">
+                                        <RanksPodium 
+                                            name={topDjs[1].username} 
+                                            value={topDjs[1].bigwoots}
+                                            link={`/user/[id]`}
+                                            as={`/user/${topDjs[1].pid}`}
+                                            height={6}
+                                            step={2}
+                                        />
+                                        <RanksPodium 
+                                            name={topDjs[0].username} 
+                                            value={topDjs[0].bigwoots}
+                                            link={`/user/[id]`}
+                                            as={`/user/${topDjs[0].pid}`}
+                                            height={8}
+                                            step={1}
+                                        />
+                                        <RanksPodium 
+                                            name={topDjs[2].username} 
+                                            value={topDjs[2].bigwoots}
+                                            link={`/user/[id]`}
+                                            as={`/user/${topDjs[2].pid}`}
+                                            height={4}
+                                            step={3}
+                                        />
+                                    </div>
                                 )
                             }else{
                                 return (

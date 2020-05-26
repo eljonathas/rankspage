@@ -72,15 +72,15 @@ body, html {
     background: url('/assets/images/love.svg') center no-repeat;
 }
 
-.rks__icon.rks-first {
+.rks__icon.rks-1 {
     background: url('/assets/images/first.svg') center no-repeat;
 }
 
-.rks__icon.rks-second {
+.rks__icon.rks-2 {
     background: url('/assets/images/second.svg') center no-repeat;
 }
 
-.rks__icon.rks-third {
+.rks__icon.rks-3 {
     background: url('/assets/images/third.svg') center no-repeat;
 }
 
@@ -96,12 +96,17 @@ body, html {
     background: url('/assets/images/trophy.svg') center no-repeat;
 }
 
+.save__loader {
+    background: url('/assets/images/saveloader.svg') center no-repeat;
+}
+
 .ranks__container {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .ranks__header {
@@ -111,6 +116,13 @@ body, html {
 .ranks__header h1 {
     font-weight: 600;
     text-align: center;
+}
+
+.ranks__podium {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 40px;
 }
 
 

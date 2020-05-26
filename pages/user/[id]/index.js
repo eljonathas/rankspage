@@ -1,19 +1,19 @@
+import Link from 'next/link';
+import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { IconContext } from 'react-icons';
 import { FaHeart, FaTrophy, FaUserFriends, FaUserPlus, FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
-import Link from 'next/link';
 import api from '../../../services/api';
-import Head from 'next/head';
 import UserRows from '../../../components/UserRows';
 import ReactGA from 'react-ga';
 
 
 export default function User(){
+    const [isLoading, setIsLoading]         = useState(true);
     const [userData, setUserData]           = useState([]);
     const [userLove, setUserLove]           = useState([]);
     const [userFans, setUserFans]           = useState([]);
     const [userFollowed, setUserFollowed]   = useState([]);
-    const [isLoading, setIsLoading]         = useState(true);
     const [displayName, setDisplayName]     = useState('');
     const [displayRefer, setDisplayRefer]   = useState('');
     const [displayShow, setDisplayShow]     = useState([]);
@@ -25,7 +25,7 @@ export default function User(){
             return;
         }
 
-        api.get(`/user/${window.location.pathname.match(/[0-9].*/)[0]}`).then(response => {
+        api.get("/user/"+window.location.pathname.match(/[0-9].*/)[0]).then(response => {
             if(response.data && !response.data.error){
                 setUserData(response.data);
                 setDisplayName(`Seguidores de ${response.data.username} (${response.data.allfans})`);
@@ -102,7 +102,12 @@ export default function User(){
             <Head>
                 <title>{userData.username || 'Carregando'} - Radio Brasil</title>
             </Head>
-            <header className="user__header">
+            <header className={`user__header ${userData.bg ? 'have__bg': ''}`}>
+                {
+                    userData.bg && (
+                        <div className="__bg" style={{backgroundImage: `url(${userData.bg})`}}></div>
+                    )
+                }
                 <div className="user__information">
                     <div className="user__photo">
                         <div className="__image" style={{backgroundImage: `url("${userData.image}")`}}></div>
@@ -144,7 +149,12 @@ export default function User(){
                 <div className="__list">
                     {
                         (!isLoading && displayShow.map((user, key) => 
-                            <UserRows type={displayRefer} key={key} user_id={user.pid} user_name={user.username} user_photo={user.image}/>
+                            <UserRows 
+                                key={key} 
+                                user_name={user.username} 
+                                user_photo={user.image}
+                                link={`/user/${user.pid}`}
+                            />
                         )) || (
                             <>
                                 <div className="loader__card"></div>
@@ -175,10 +185,28 @@ export default function User(){
                 }
 
                 .user__header {
-                    padding: 10px;
-                    margin-top: 40px;
-                    background: rgba(255, 255, 255, .05);
+                    padding: 12px;
+                    margin-top: 40px;                    
                     width: 50em;
+                    border-radius: 6px;
+                    background: rgba(255, 255, 255, .05);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    position: relative;
+                }
+
+                .user__header.have__bg .__bg {
+                    position: absolute;
+                    border-radius: 6px;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: 2;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    background-position: center;
                 }
 
                 .user__information {
@@ -187,16 +215,21 @@ export default function User(){
                     align-items: center;
                 }
 
+                .user__header.have__bg .user__information {
+                    text-shadow: 0 2px 4px rgba(0,0,0,.2);
+                }
+
                 .user__photo {
-                    width: 6em;
-                    height: 6em;
-                    max-width: 6em;
-                    min-width: 6em;
-                    max-height: 6em;
-                    min-height: 6em;
+                    width: 7em;
+                    height: 7em;
+                    max-width: 7em;
+                    min-width: 7em;
+                    max-height: 7em;
+                    min-height: 7em;
                     border-radius: 100%;
-                    background: rgba(255, 255, 255, .1);
+                    background: rgba(255,255,255,.1);
                     margin-right: 25px;
+                    z-index: 5;
                 }
 
                 .user__photo .__image {
@@ -208,6 +241,10 @@ export default function User(){
                     background-size: cover;
                 }
 
+                .user__info {
+                    z-index: 5;
+                }
+
                 .user__name {
                     margin-bottom: 3px;
                     font-weight: 600;
@@ -216,7 +253,11 @@ export default function User(){
 
                 .user__jointime {
                     color: rgba(255, 255, 255, .5);
-                    margin-bottom: 15px;
+                    margin-bottom: 18px;
+                }
+
+                .user__header.have__bg .user__jointime {
+                    color: #eee;   
                 }
 
                 .user__relationship {
@@ -245,7 +286,7 @@ export default function User(){
                 }
                 
                 .user__navigator {
-                    margin-top: 10px;
+                    margin-top: 12px;
                     list-style: none;
                     display: flex;
                     padding: 0 10px 5px;
@@ -258,15 +299,28 @@ export default function User(){
                     border-radius: 4px;
                     cursor: pointer;
                     transition: all .3s ease;
+                    z-index: 5;
+                }
+
+                .user__header.have__bg .user__navigator .__item {
+                    color: #ddd;
                 }
 
                 .user__navigator .__item:hover {
                     background: rgba(255, 255, 255, .05);
                 }
 
+                .user__header.have__bg .user__navigator .__item:hover{
+                    background: rgba(0, 0, 0, .5);
+                }
+
                 .user__navigator .__item.active {
                     background: rgba(255, 255, 255, .1);
-                    color: white;
+                    color: white !important;
+                }
+
+                .user__header.have__bg .user__navigator .__item.active{
+                    background: #2c2f33;
                 }
 
                 .user__list {

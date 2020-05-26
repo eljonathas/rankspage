@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect } from 'react';
-import {FaLongArrowAltRight} from 'react-icons/fa'
+import { FaLongArrowAltRight, FaHome } from 'react-icons/fa'
 import ReactGA from 'react-ga';
 
 export default function Home() {
@@ -43,8 +43,11 @@ export default function Home() {
         </Link>
       </main>
       <footer>
-        <a href="https://plug.dj/electro-brasil-19" target="_blank" className="to__room"><p>Ir para a sala</p><FaLongArrowAltRight/></a>
-        <p className="creator__credits">Made with <i className="rks__icon rks-love"></i> by <a href="https://github.com/eljonathas" target="_blank">TheMars</a></p>
+          <div className="footer__buttons">
+          <a href="https://plug.dj/electro-brasil-19" target="_blank" className="to__room"><FaHome/><p>Ir para a sala</p></a>
+              <Link href="/user/customize"><a className="to__room custom"><p>Customização</p><FaLongArrowAltRight/></a></Link>
+          </div>
+          <p className="creator__credits">Made with <i className="rks__icon rks-love"></i> by <a href="https://github.com/eljonathas" target="_blank">TheMars</a></p>
       </footer>
       <style jsx>{`
         .ranks__container {
@@ -100,6 +103,17 @@ export default function Home() {
 
         .rks__icon {
           margin-bottom: 15px;
+        }
+
+        .to__room.custom {
+          background: #4CAF50 !important;
+          border-color: #4CAF50 !important;
+          color: white !important;
+        }
+
+        .to__room:not(.custom) p {
+          margin-right: 0;
+          margin-left: 8px;
         }
 
         .footer a {
