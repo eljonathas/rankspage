@@ -58,17 +58,17 @@ export default function Customize(){
         return true;
     }
 
-    /**
-    * @params Client-ID need a valid token based on Imgur API
-    * see it on: https://apidocs.imgur.com/ and https://imgur.com
-    */
-
     function sendImageToImgur(file){
         return new Promise(async (resolve, reject) => {
             const readFile = new FileReader();
             readFile.readAsDataURL(file);
             readFile.onload = function(){
                 const readResult = this.result.substr((this.result.search(/base64,/)+7));
+                
+                /**
+                * @params Client-ID need a valid token based on Imgur API
+                * see it on: https://apidocs.imgur.com/ and https://imgur.com
+                */
 
                 axios({
                     method: 'POST',
