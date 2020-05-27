@@ -333,6 +333,7 @@ export default function User(){
                     font-size: 1.3em;
                     color: rgba(255, 255, 255, .5);
                     margin-bottom: 15px;
+                    margin-left: 5px;
                 }
 
                 .user__list .__list {
@@ -371,8 +372,9 @@ export default function User(){
                     height: 10em;
                     max-width: 9.37em;
                     margin-bottom: 10px;
+                    margin-left: 5px;
+                    margin-right: 5px;
                     flex-grow: 1;
-                    margin-right: 10px;
                 }
 
                 footer {

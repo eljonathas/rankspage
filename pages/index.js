@@ -106,9 +106,15 @@ export default function Home() {
         }
 
         .to__room.custom {
-          background: #4CAF50 !important;
-          border-color: #4CAF50 !important;
+          background: #47a04b !important;
+          border-color: #47a04b !important;
           color: white !important;
+          transition: all .3s ease;
+        }
+
+        .to__room.custom:hover {
+          background: #51b855 !important;
+          border-color: #51b855 !important;
         }
 
         .to__room:not(.custom) p {

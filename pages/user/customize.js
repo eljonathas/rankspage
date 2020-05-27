@@ -58,6 +58,11 @@ export default function Customize(){
         return true;
     }
 
+    /**
+    * @params Client-ID need a valid token based on Imgur API
+    * see it on: https://apidocs.imgur.com/ and https://imgur.com
+    */
+
     function sendImageToImgur(file){
         return new Promise(async (resolve, reject) => {
             const readFile = new FileReader();
@@ -69,7 +74,7 @@ export default function Customize(){
                     method: 'POST',
                     url: 'https://api.imgur.com/3/image',
                     headers: {
-                        Authorization: 'Client-ID 90b04794aac6a13',
+                        Authorization: 'Client-ID YOUR-APPLICATION-TOKEN',
                     },
                     data: {
                         image: readResult,
@@ -327,7 +332,7 @@ export default function Customize(){
                                 <h2 className="__subtitle">Passos finais</h2>
                                 <p className="__description">
                                     Por fim, depois de enviar as imagens e obter o token gerado, você deve ir até o chat da sala e utilizar o comando de validação e resgate de código digitando !img e o token gerado,
-                                    conforme exposto no print, e suas imagens serão analizadas a e seu perfil atualizado, caso tudo ocorra bem. No mais, você já está pronto para customizar seu perfil,
+                                    conforme exposto no print, e suas imagens serão analisadas a e seu perfil atualizado, caso tudo ocorra bem. No mais, você já está pronto para customizar seu perfil,
                                     fique à vontade e uso seu bom senso para modificar o seu perfil na comunidade. Nos vemos novamente em breve!
                                 </p>
                             </div>
@@ -706,13 +711,28 @@ export default function Customize(){
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                width: 48em;
+                width: 43em;
                 height: 34em;
                 background: #2c2f33;
                 border-radius: 4px;
                 padding: 20px 35px;
                 overflow: auto;
+                scrollbar-color: rgba(255, 255, 255, 0.05) transparent;
+                scrollbar-width: thin;
             }
+
+            .init__display .__content::-webkit-scrollbar {
+                width: 8px;
+            }
+            
+            .init__display .__content::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            
+            .init__display .__content::-webkit-scrollbar-thumb {
+                background: rgba(255, 255, 255, 0.05);
+            }
+            
 
             .init__display .__content header {
                 margin-bottom: 10px;

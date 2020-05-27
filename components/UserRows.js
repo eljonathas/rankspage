@@ -29,7 +29,8 @@ export default function UserRow({ user_photo, user_name, link }){
                     max-width: 9.37em;
                     margin-bottom: 10px;
                     flex-grow: 1;
-                    margin-right: 10px;
+                    margin-right: 5px;
+                    margin-left: 5px;
                     cursor: pointer;
                     transition: all .3s ease;
                 }
