@@ -12,6 +12,8 @@ import {
     FaSave
 } from 'react-icons/fa';
 
+import sendImageToImgur from '../../utils/sendToImgur';
+
 export default function Customize(){
     const [firstime, setFirstTime]          = useState('');
     const [labelOpen, setLabelOpen]         = useState('');
@@ -56,34 +58,6 @@ export default function Customize(){
             return false;
 
         return true;
-    }
-
-    function sendImageToImgur(file){
-        return new Promise(async (resolve, reject) => {
-            const readFile = new FileReader();
-            readFile.readAsDataURL(file);
-            readFile.onload = function(){
-                const readResult = this.result.substr((this.result.search(/base64,/)+7));
-                
-                /**
-                * @params Client-ID need a valid token based on Imgur API
-                * see it on: https://apidocs.imgur.com/ and https://imgur.com
-                */
-
-                axios({
-                    method: 'POST',
-                    url: 'https://api.imgur.com/3/image',
-                    headers: {
-                        Authorization: 'Client-ID YOUR-APPLICATION-TOKEN',
-                    },
-                    data: {
-                        image: readResult,
-                    }
-                })
-                .then(response => resolve(response))
-                .catch(error => reject(error));
-            }
-        });
     }
 
     function dispatchImage(file){
@@ -225,13 +199,12 @@ export default function Customize(){
                         onDragEnter={e => {
                             e.stopPropagation();
                             e.preventDefault();
-                            e.target.classList.add('active')
-                            
-                        }} 
+                            e.target.classList.add('active');
+                        }}
                         onDragLeave={e => {
                             e.stopPropagation();
                             e.preventDefault();
-                            e.target.classList.remove('active')
+                            e.target.classList.remove('active');
                         }}
                         onDragEnd={e => {
                             e.stopPropagation();

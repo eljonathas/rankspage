@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect } from 'react';
-import { FaLongArrowAltRight, FaHome } from 'react-icons/fa'
+import { FaLongArrowAltRight, FaHome, FaImages } from 'react-icons/fa'
 import ReactGA from 'react-ga';
 
 export default function Home() {
@@ -44,8 +44,25 @@ export default function Home() {
       </main>
       <footer>
           <div className="footer__buttons">
-          <a href="https://plug.dj/electro-brasil-19" target="_blank" className="to__room"><FaHome/><p>Ir para a sala</p></a>
-              <Link href="/user/customize"><a className="to__room custom"><p>Customização</p><FaLongArrowAltRight/></a></Link>
+              <a 
+                href="https://plug.dj/electro-brasil-19" 
+                target="_blank" 
+                className="to__room"
+              >
+                <FaHome/><p>Ir para a sala</p>
+              </a>
+
+              <Link href="/badges">
+                <a className="to__room badge">
+                  <FaImages /><p>Emblemas</p>
+                </a>
+              </Link>
+
+              <Link href="/user/customize">
+                <a className="to__room custom">
+                  <p>Customização</p><FaLongArrowAltRight/>
+                </a>
+              </Link>
           </div>
           <p className="creator__credits">Made with <i className="rks__icon rks-love"></i> by <a href="https://github.com/eljonathas" target="_blank">TheMars</a></p>
       </footer>
@@ -103,6 +120,19 @@ export default function Home() {
 
         .rks__icon {
           margin-bottom: 15px;
+        }
+
+        .to__room.badge {
+          margin-right: 10px;
+          background: #673ab7 !important;
+          border-color: #673ab7 !important;
+          color: white !important;
+          transition: all .3s ease;
+        }
+
+        .to__room.badge:hover {
+          background: #7744d2 !important;
+          border-color: #7744d2 !important;
         }
 
         .to__room.custom {

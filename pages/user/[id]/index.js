@@ -2,9 +2,19 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import { IconContext } from 'react-icons';
-import { FaHeart, FaTrophy, FaUserFriends, FaUserPlus, FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
+import { 
+    FaHeart, 
+    FaTrophy,
+    FaUserFriends,
+    FaUserPlus,
+    FaLongArrowAltRight,
+    FaLongArrowAltLeft,
+    FaCircle
+} from 'react-icons/fa';
 import api from '../../../services/api';
 import UserRows from '../../../components/UserRows';
+import ConquestRows from '../../../components/ConquestRows';
+import ProfileLoader from '../../../components/ProfileLoader';
 import ReactGA from 'react-ga';
 
 
@@ -12,10 +22,8 @@ export default function User(){
     const [isLoading, setIsLoading]         = useState(true);
     const [userData, setUserData]           = useState([]);
     const [userLove, setUserLove]           = useState([]);
-    const [userFans, setUserFans]           = useState([]);
-    const [userFollowed, setUserFollowed]   = useState([]);
     const [displayName, setDisplayName]     = useState('');
-    const [displayRefer, setDisplayRefer]   = useState('');
+    const [displayRefer, setDisplayRefer]   = useState('friends');
     const [displayShow, setDisplayShow]     = useState([]);
 
     useEffect(() => {
@@ -30,28 +38,41 @@ export default function User(){
                 setUserData(response.data);
                 setDisplayName(`Seguidores de ${response.data.username} (${response.data.allfans})`);
 
-                // get user fans
-                api.get(`/get/fans/${response.data.pid}`).then(resp => {
-                    setUserFans(resp.data);
-                    setDisplayShow(resp.data);
-                    setIsLoading(false);
-                });
-
                 // get user love data
                 if(response.data.love)
                     api.get(`/get/love/${response.data.pid}`).then(resp => setUserLove(resp.data));
-
-                // get user followed
-                api.get(`/get/followed/${response.data.pid}`).then(resp => setUserFollowed(resp.data));
-            }else{
-                document.getElementsByClassName('ranks__container')[0].classList.remove('user__profile');
-                document.getElementsByClassName('ranks__container')[0].innerHTML = '<p>Usuário inválido</p>';
             }
         });
 
         ReactGA.initialize('UA-107769128-1');
         ReactGA.pageview(window.location.pathname + window.location.search);
     }, []);
+
+    useEffect(() => {
+        setIsLoading(true);
+
+        if(displayRefer === 'friends'){
+            // get user fans
+            api.get(`/get/fans/${window.location.pathname.match(/[0-9].*/)[0]}`).then(resp => {
+                setDisplayShow(resp.data);
+                setIsLoading(false);
+            });
+        }else
+        if(displayRefer === 'followers'){
+            // get user followed
+            api.get(`/get/followed/${window.location.pathname.match(/[0-9].*/)[0]}`).then(resp => {
+                setDisplayShow(resp.data);
+                setIsLoading(false);
+            });
+        }else{
+            api.get(`/get/conquests/${window.location.pathname.match(/[0-9].*/)[0]}`).then(resp => {
+                const reverseData = resp.data.slice(0).reverse();
+
+                setDisplayShow(reverseData);
+                setIsLoading(false);
+            });
+        }
+    }, [displayRefer]);
 
     function parseMsToDate(time){
         let thisDate = new Date(time);
@@ -77,63 +98,62 @@ export default function User(){
 
             event.target.classList.add('active');
 
+            setDisplayShow([]);
+
             switch(dataTarget){
                 case 'fans':
-                    setDisplayName(`Seguidores de ${userData.username} (${userData.allfans})`);
-                    setDisplayShow(userFans);
                     setDisplayRefer('friends');
+                    setDisplayName(`Seguidores de ${userData.username} (${userData.allfans})`);
                     break;
                 case 'following':
+                    setDisplayRefer('followers');
                     setDisplayName(`Usuários que ${userData.username} segue (${userData.allfollowed})`);
-                    setDisplayShow(userFollowed);
-                    setDisplayRefer('friends');
                     break;
                 case 'conquests':
-                    setDisplayName(`Conquistas de ${userData.username} (${sizeOf(userData.conquests)})`);
-                    setDisplayShow(userData.conquests);
                     setDisplayRefer('conquests');
+                    setDisplayName(`Conquistas de ${userData.username} (${sizeOf(userData.conquests)})`);
                     break;
             }
         }
     }
 
+    if(!userData.pid){
+        return <ProfileLoader/>;
+    }
+
     return (
         <div className="ranks__container user__profile">
             <Head>
-                <title>{userData.username || 'Carregando'} - Radio Brasil</title>
+                <title>Perfil de {userData.username} - Radio Brasil</title>
             </Head>
             <header className={`user__header ${userData.bg ? 'have__bg': ''}`}>
                 {
-                    userData.bg && (
-                        <div className="__bg" style={{backgroundImage: `url(${userData.bg})`}}></div>
-                    )
+                    userData.bg && ( <div className="__bg" style={{backgroundImage: `url(${userData.bg})`}}></div>)
                 }
                 <div className="user__information">
                     <div className="user__photo">
                         <div className="__image" style={{backgroundImage: `url("${userData.image}")`}}></div>
                     </div>
                     <div className="user__info">
-                        {
-                            (!isLoading && (<h1 className="user__name">{userData.username}</h1>))
-                            || (<div className="loader__bar name"></div>)
-                        }
-                        {
-                            (!isLoading && (<p className="user__jointime">Logado pela primeira vez em {parseMsToDate(userData.jointime)}</p>))
-                            || (<div className="loader__bar time"></div>)
-                        }
-                        {
-                            (!isLoading && 
-                                (<h3 className="user__relationship">
-                                    {userData.love === 0 ? (<><FaHeart size={16}></FaHeart><p>Sem relacionamento</p></>) : 
-                                    (
-                                        <a href={`/user/${userLove.loveid}`} target="_blank">
-                                            <i className="rks__icon rks-love"></i><p>{userLove.lovename}</p>
-                                        </a>
-                                    )
-                                    }
-                                </h3>)
-                            ) || (<div className="loader__bar love"></div>)
-                        }
+                        <h1 className="user__name">{userData.username} 
+                            <span className={`user__status ${userData.inRoom ? 'online':'offline'}`}>
+                                <FaCircle 
+                                    size={9}
+                                    style={{color: 'inherit', marginRight: '5px'}}
+                                /> 
+                                {userData.inRoom ? "Na sala":"Offline"}
+                            </span>
+                        </h1>
+                        <p className="user__jointime">Logado pela primeira vez em {parseMsToDate(userData.jointime)}</p>
+                        <h3 className="user__relationship">
+                            {userData.love === 0 ? (<><FaHeart size={16}></FaHeart><p>Sem relacionamento</p></>) 
+                            : (
+                                <a href={`/user/${userLove.loveid}`} target="_blank">
+                                    <i className="rks__icon rks-love"></i><p>{userLove.lovename}</p>
+                                </a>
+                            )
+                            }
+                        </h3>
                     </div>
                 </div>
                 <ul className="user__navigator">
@@ -148,14 +168,28 @@ export default function User(){
                 <h1 className="__title">{displayName}</h1>
                 <div className="__list">
                     {
-                        (!isLoading && displayShow.map((user, key) => 
-                            <UserRows 
-                                key={key} 
-                                user_name={user.username} 
-                                user_photo={user.image}
-                                link={`/user/${user.pid}`}
-                            />
-                        )) || (
+                        !isLoading ? displayShow.map((item, key) => {
+                                if(displayRefer === "conquests") {
+                                    console.log(item);
+
+                                    return (
+                                        <ConquestRows 
+                                            key={key}
+                                            conquest_id={item}
+                                        />
+                                    )
+                                }else{
+                                    return (
+                                        <UserRows 
+                                            key={key} 
+                                            user_name={item.username} 
+                                            user_photo={item.image}
+                                            link={`/user/${item.pid}`}
+                                        />
+                                    )
+                                }
+                            }
+                        ) : (
                             <>
                                 <div className="loader__card"></div>
                                 <div className="loader__card"></div>
@@ -249,6 +283,26 @@ export default function User(){
                     margin-bottom: 3px;
                     font-weight: 600;
                     line-break: anywhere;
+                    display: flex;
+                    align-items: center;
+                }
+
+                .user__status {
+                    font-size: 13px;
+                    text-transform: uppercase;
+                    background: #2c2f33;
+                    padding: 3px 8px;
+                    border-radius: 4px;
+                    text-shadow: none;
+                    margin-left: 10px;
+                }
+
+                .user__status.online {
+                    color: #2aca30;
+                }
+
+                .user__status.offline {
+                    color: rgba(255, 255, 255, .5);
                 }
 
                 .user__jointime {
@@ -340,28 +394,6 @@ export default function User(){
                     display: flex;
                     flex-wrap: wrap;
                     max-width: 50em;
-                }
-
-                .loader__bar {
-                    border-radius: 5px;
-                    width: 20em;
-                    height: 2em;
-                    background: rgba(255, 255, 255, .1);
-                }
-
-                .loader__bar.name {
-                    width: 25rem;
-                    margin-bottom: 15px;
-                }
-
-                .loader__bar.time {
-                    height: 1.8em;
-                    margin-bottom: 20px;
-                }
-
-                .loader__bar.love {
-                    height: 1.5em;
-                    width: 18em;
                 }
 
                 .loader__card {
