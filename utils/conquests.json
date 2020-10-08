@@ -1,0 +1,152 @@
+[
+    {
+        "id": "Cnqst29-05-2020__FLog",
+        "type": 0,
+        "setup": {
+            "image": "https://i.imgur.com/DafrBRI.png",
+            "bg": "",
+            "title": "Novo usuário",
+            "info": "Primeiro login feito na plataforma. Seja muito bem-vindo(a)."
+        }
+    },
+    {
+        "id": "Cnqst29-05-2020__FLove",
+        "type": 0,
+        "setup": {
+            "image": "https://i.imgur.com/N9bY7tG.png",
+            "bg": "",
+            "title": "Ah, o amor!",
+            "info": "Casou-se pela primeira vez. Se está feliz? Não tenho certeza."
+        }
+    },
+    {
+        "id": "Cnqst29-05-2020__10Fans",
+        "type": 0,
+        "setup": {
+            "image": "https://i.imgur.com/QMTInB3.png",
+            "bg": "",
+            "title": "Primeiros 10 fãs",
+            "info": "Famosinho? Quase. Os primeiros 10 seguidores foram alcançados."
+        }
+    },
+    {
+        "id": "Cnqst29-05-2020__50Fans",
+        "type": 0,
+        "setup": {
+            "image": "https://i.imgur.com/0QwHvcA.png",
+            "bg": "",
+            "title": "Artista",
+            "info": "Que que isso hein! Os primeiros 50 fãs foram alcançados."
+        }
+    },
+    {
+        "id": "Cnqst29-05-2020__100Fans",
+        "type": 0,
+        "setup": {
+            "image": "https://i.imgur.com/SiIevH2.pn",
+            "bg": "",
+            "title": "Estrelinha",
+            "info": "100 fãs alcançados, é gente de mais até para contar. Parabéns!"
+        }
+    },
+    {
+        "id": "Cnqst29-05-2020__BestDJ",
+        "type": 1,
+        "setup": {
+            "image": "/assets/X",
+            "bg": "",
+            "title": "Melhor DJ da sala",
+            "info": "Este usuário foi o DJ mais votado do mês e por isso merece aplausos com as mãos e os pés."
+        }
+    },
+    {
+        "id": "Cnqst29-05-2020__BestDJEver",
+        "type": 2,
+        "setup": {
+            "image": "/assets/X",
+            "bg": "",
+            "title": "DJ queridinho",
+            "info": "Toda vez a mesma coisa. Este usuário toca, a galera canta. Não tem como, é o melhor DJ da história."
+        }
+    },
+    {
+        "id": "Cnqst28-06-2020__Developer",
+        "type": 2,
+        "setup": {
+            "image": "https://i.imgur.com/QTsffMT.png",
+            "bg": "#263971",
+            "title": "Desenvolvedor",
+            "info": "Conquista exclusiva para sofredores, ou melhor, desenvolvedores."
+        }
+    },
+    {
+        "id": "Cnqst29-06-2020__HackDasRoletas",
+        "type": 2,
+        "setup": {
+            "image": "https://i.imgur.com/HgHJhpp.png",
+            "bg": "#3c454e",
+            "title": "Hack das roletas",
+            "info": "Conquista exclusiva para aqueles que carregam a sorte nas costas."
+        }
+    },
+    {
+        "id": "Cnqst29-06-2020__FilhoDeOdin",
+        "type": 2,
+        "setup": {
+            "image": "https://i.imgur.com/ifC22jM.png",
+            "bg": "#3c454e",
+            "title": "Filho de Odin",
+            "info": "Conquista exclusiva para aqueles que dominam os seres nórdicos."
+        }
+    },
+    {
+        "id": "Cnqst29-06-2020__MestreDasFrutas",
+        "type": 2,
+        "setup": {
+            "image": "https://i.imgur.com/MQCQJFK.png",
+            "bg": "#3c454e",
+            "title": "Mestre das Frutas",
+            "info": "Conquista exclusiva para aqueles que dominam o slots."
+        }
+    },
+    {
+        "id": "Cnqst29-06-2020__Falador",
+        "type": 0,
+        "setup": {
+            "image": "https://i.imgur.com/JEpAsjD.png",
+            "bg": "",
+            "title": "Falador",
+            "info": "Esta conquista é para aqueles que gostam de falar."
+        }
+    },
+    {
+        "id": "Cnqst29-06-2020__Residente",
+        "type": 0,
+        "setup": {
+            "image": "https://i.imgur.com/XWQdsOp.png",
+            "bg": "",
+            "title": "Residente",
+            "info": "Permaneceu por mais de 24 horas seguidas logado na sala."
+        }
+    },
+    {
+        "id": "Cnqst29-06-2020__Favorito",
+        "type": 0,
+        "setup": {
+            "image": "https://i.imgur.com/Cg5LCf8.png",
+            "bg": "",
+            "title": "Favorito",
+            "info": "Sua música foi favoritada por mais de 3 usuários."
+        }
+    },
+    {
+        "id": "Cnqst29-06-2020__90-2000s-event",
+        "type": 0,
+        "setup": {
+            "image": "https://i.imgur.com/Vwuoj06.png",
+            "bg": "",
+            "title": "Discoteca",
+            "info": "Conquista exclusiva para os participantes do evento old school."
+        }
+    }
+]

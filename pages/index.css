@@ -50,6 +50,10 @@ body, html {
     justify-content: space-between;
 }
 
+ul {
+    list-style: none;
+}
+
 .rks__icon {
     background-size: contain !important;
     width: 100px;
@@ -100,7 +104,8 @@ body, html {
     background: url('/assets/images/saveloader.svg') center no-repeat;
 }
 
-.ranks__container {
+.ranks__container,
+.staff__container {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -248,6 +253,112 @@ footer {
 
 .footer__buttons a:first-child {
     margin-right: 10px;
+}
+
+.check__box input {
+    margin-right: 10px;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: rgba(255, 255, 255, .1);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.check__box.checked input {
+    border: solid 2px #4CAF50;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    display: flex;
+}
+
+.check__box.checked input:after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #4CAF50;
+    display: flex;
+    margin: auto;
+    border-radius: 2px;
+}
+
+.classic__header {
+    margin-bottom: 20px;
+}
+
+.classic__header h1 {
+    font-weight: 600;
+    font-size: 1.2em;
+}
+
+.centered__between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.default__button {
+    background: #4CAF50;
+    border-radius: 5px;
+    border: transparent;
+    outline: none;
+    color: white;
+
+    display: flex;
+    align-items: center;
+
+    padding: .5em 1em;
+    font-size: 1em;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all .2s ease;
+}
+
+.default__button:hover {
+    background: #52bb56;
+}
+
+.classic__input-table {
+    display: flex;
+    flex-direction: column;
+}
+
+.classic__input-table label {
+    margin-bottom: 20px;
+    color: rgba(255, 255, 255, .5);
+    position: relative;
+}
+
+.classic__input-table label svg {
+    position: absolute;
+    margin: 18px 15px;
+}
+
+.classic__input-table label input {
+    font-family: initial;
+    font-weight: 500;
+    width: 300px;
+    border-radius: 5px;
+    background: #2c2f33;
+    border: transparent;
+    padding: 15px 15px 15px 45px;
+    font-size: 1em;
+    color: white;
+}
+
+.classic__input-table label input:-webkit-autofill,
+.classic__input-table label input:-webkit-autofill:hover, 
+.classic__input-table label input:-webkit-autofill:focus, 
+.classic__input-table label input:-webkit-autofill:active  {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #2c2f33 inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.classic__input-table label input:focus {
+    box-shadow: 0 0 0 2px #4caf50;
 }
 
 @keyframes backgroundEffect {

@@ -11,10 +11,10 @@ import {
     FaLongArrowAltLeft,
     FaCircle
 } from 'react-icons/fa';
-import api from '../../../services/api';
-import UserRows from '../../../components/UserRows';
-import ConquestRows from '../../../components/ConquestRows';
-import ProfileLoader from '../../../components/ProfileLoader';
+import api from '../../services/api';
+import UserRows from '../../components/UserRows';
+import ConquestRows from '../../components/ConquestRows';
+import ProfileLoader from '../../components/ProfileLoader';
 import ReactGA from 'react-ga';
 
 
@@ -184,7 +184,7 @@ export default function User(){
                                             key={key} 
                                             user_name={item.username} 
                                             user_photo={item.image}
-                                            link={`/user/${item.pid}`}
+                                            user_pid={item.pid}
                                         />
                                     )
                                 }

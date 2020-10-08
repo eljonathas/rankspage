@@ -1,16 +1,16 @@
 import Link from 'next/link';
 
-export default function UserRow({ user_photo, user_name, link }){
+export default function UserRow({ user_photo, user_name, user_pid }){
     return (
         <>
-            <a href={link}>
+            <Link href={`/user/${user_pid}`} passHref>
                 <div className="friend__card">
                     <div className="friend__photo">
                         <div className="__image" style={{backgroundImage: `url("${user_photo}")`}}></div>
                     </div>
                     <h1 className="friend__name">{user_name}</h1>
                 </div>
-            </a>
+            </Link>
             <style jsx>{`
                 a {
                     text-decoration: none;
