@@ -43,7 +43,7 @@
         "id": "Cnqst29-05-2020__100Fans",
         "type": 0,
         "setup": {
-            "image": "https://i.imgur.com/SiIevH2.pn",
+            "image": "https://i.imgur.com/SiIevH2.png",
             "bg": "",
             "title": "Estrelinha",
             "info": "100 fãs alcançados, é gente de mais até para contar. Parabéns!"
@@ -140,13 +140,23 @@
         }
     },
     {
-        "id": "Cnqst29-06-2020__90-2000s-event",
-        "type": 0,
+        "id": "Cnqst31-10-2020__halloween-event",
+        "type": 1,
         "setup": {
-            "image": "https://i.imgur.com/Vwuoj06.png",
+            "image": "https://i.imgur.com/Cb3jcHO.png",
             "bg": "",
-            "title": "Discoteca",
-            "info": "Conquista exclusiva para os participantes do evento old school."
+            "title": "Halloween 10/20",
+            "info": "Conquista exclusiva para os participantes do evento de Halloween."
+        }
+    },
+    {
+        "id": "Cnqst31-10-2020__halloween-event-2",
+        "type": 1,
+        "setup": {
+            "image": "https://i.imgur.com/hHVG8Hw.png",
+            "bg": "",
+            "title": "Bruxão",
+            "info": "Tocou as melhores de Halloween durante o evento, famoso bruxão."
         }
     }
 ]

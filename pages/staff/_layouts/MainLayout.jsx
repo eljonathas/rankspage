@@ -20,7 +20,6 @@ export default function MainLayout({ userInfo }){
 
     const [updateUsersPage, setUpdateUsersPage] = useState(false);
 
-
     function handleNavigatorClick(e){
         const targetItem = e.target;
         const inlineNavigatorItems = document.querySelectorAll('.inline__navbar li');

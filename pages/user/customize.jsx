@@ -136,7 +136,7 @@ export default function Customize(){
                 <h1>Personalização de perfil</h1>
                 <p>Selecione o elemento que você deseja alterar ou <strong onClick={() => setFirstTime('active')}>clique aqui</strong> para ver o tutorial</p>
             </div>
-            <header className="user__header">
+            <header className="user__header custom">
                 <div className="select__bg user" data-label="profile__bg" onClick={event => openDialog(event)}></div>
                 <div className="user__information">
                     <div className="user__photo" data-label="profile__img" onClick={event => openDialog(event)}></div>

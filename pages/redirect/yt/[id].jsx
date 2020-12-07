@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FaLongArrowAltRight, FaLongArrowAltLeft } from 'react-icons/fa';
 import Link from 'next/link';
 import Head from 'next/head';
-import SongRedirect from '../../../../components/SongRedirect';
+import SongRedirect from '../../../components/SongRedirect';
 import ReactGA from 'react-ga';
 
 export default function Youtube(){

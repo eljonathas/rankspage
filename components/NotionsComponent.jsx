@@ -32,7 +32,7 @@ export default function NotionsComponent({ author, timestamp, fixed, content, up
                     border-radius: 10px;
                     padding: 2em;
 
-                    height: fit-content;
+                    height: 18em;
                 }
 
                 .__notion header {

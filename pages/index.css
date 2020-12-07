@@ -337,7 +337,7 @@ footer {
 }
 
 .classic__input-table label input {
-    font-family: initial;
+    font-family: inherit;
     font-weight: 500;
     width: 300px;
     border-radius: 5px;

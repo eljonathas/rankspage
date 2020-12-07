@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect } from 'react';
-import { FaLongArrowAltRight, FaHome, FaImages } from 'react-icons/fa'
+import { FaLongArrowAltRight, FaHome, FaImages, FaArrowRight } from 'react-icons/fa'
 import ReactGA from 'react-ga';
 
 export default function Home() {
@@ -16,6 +16,13 @@ export default function Home() {
       <Head>
         <title>Radio Brasil Ranks - Curta com a gente no Plug.dj!</title>
       </Head>
+      <nav className="staff__place">
+        <Link href="/staff">
+          <div className="__button">
+            ÁREA DE MEMBROS <FaArrowRight style={{marginLeft: 5}}/>
+          </div>
+        </Link>
+      </nav>
       <header className="ranks__header">
         <h1>Qual rank você deseja visualizar?</h1>
       </header>
@@ -73,6 +80,7 @@ export default function Home() {
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          position: relative;
         }
 
         .ranks__guides {
@@ -120,6 +128,27 @@ export default function Home() {
 
         .rks__icon {
           margin-bottom: 15px;
+        }
+
+        .staff__place {
+          width: 100%;
+          position: absolute;
+          display: flex;
+          top: 0;
+          justify-content: flex-end;
+          padding: 20px;
+        }
+
+        .staff__place .__button {
+          display: flex;
+          align-items: center;
+          color: rgba(255, 255, 255, .5);
+          cursor: pointer;
+          font-size: 1em;
+        }
+
+        .staff__place .__button:hover {
+          color: rgba(255, 255, 255, 1);
         }
 
         .to__room.badge {

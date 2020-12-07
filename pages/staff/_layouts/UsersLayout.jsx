@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 
 import { FaPlus, FaTimes, FaEnvelope, FaUser, FaIdCard } from "react-icons/fa";
 import { CSSTransition } from "react-transition-group";
+
 import InPageComponent from "../../../components/InPageComponent";
+import SelectList from "../../../components/SelectList";
 
 export default function UsersLayout({ updateUsersPage, setUpdateUsersPage }){
     const [openRegisterPage, setOpenRegisterPage] = useState(false);
@@ -43,13 +45,18 @@ export default function UsersLayout({ updateUsersPage, setUpdateUsersPage }){
                             <FaIdCard />
                             <input type="id" name="id" placeholder="Plug ID" onChange={ e => setUserId(e.target.value)}/>
                         </label>
-                        {/* <label htmlFor="role">
-                            <input type="checkbox" name="role">
-                                <option value="1000">Coordenador(a)</option>
-                                <option value="2000">Administrador(a)</option>
-                                <option value="3000">Desenvolvedor(a)</option>
-                            </input>
-                        </label> */}
+
+                        <SelectList 
+                            callback={setUserRole}
+                            options={[
+                                { value: 1000, text: 'Coordenador' },
+                                { value: 2000, text: 'Anfitrião' },
+                            ]}
+                        />
+
+                        <button className="default__button">
+                            Criar
+                        </button>
                     </div>
                 </InPageComponent>
             </CSSTransition>
@@ -57,6 +64,16 @@ export default function UsersLayout({ updateUsersPage, setUpdateUsersPage }){
             <style>{`
                 .classic__input-table label input {
                     width: 400px;
+                }
+
+                .__inputs > .default__button {
+                    justify-content: center;
+                    padding: .8em;
+                    margin-top: 1em;
+                }
+
+                .select__list {
+                    margin-bottom: 20px;
                 }
             `}</style>
         </div>
