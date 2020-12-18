@@ -5,18 +5,43 @@ import api from '../../../services/api';
 export default function BadgesLayout(){
     const [badgesPage, setBadgesPage] = useState(1);
     const [badgesList, setBadgesList] = useState([]);
+    const [badgeAction, setBadgeAction] = useState(false);
+    const [noBadges, setNoBadges] = useState(false);
+    const enterPass = localStorage.getItem('enterpass');
 
     useEffect(() => {
-        const enterPass = localStorage.getItem('enterpass');
-
         api.get('/badges?page='+badgesPage, {
             headers: {
                 'x-access-token': enterPass
             }
         }).then(response => {
-            setBadgesList(response.data);
+            if(response.data.length){
+                setBadgesList(response.data);
+            }else{
+                setNoBadges(true);
+            }
         })
-    }, []);
+    }, [badgeAction]);
+
+    function handleAcceptBadge(order){
+        api.post('/staff/badge_apply', {order}, {
+            headers: {
+                'x-access-token': enterPass
+            }
+        }).then(response => {
+            if(response.data.status) setBadgeAction(!badgeAction)
+        })
+    }
+
+    function handleDeleteBadge(order){
+        api.post('/staff/badge_denied', {order}, {
+            headers: {
+                'x-access-token': enterPass
+            }
+        }).then(response => {
+            if(response.data.status) setBadgeAction(!badgeAction)
+        })
+    }
 
     return (
         <div className="badges__list">
@@ -29,8 +54,11 @@ export default function BadgesLayout(){
                             username={badge.username}
                             image={badge.image}
                             pid={badge.pid}
+                            acceptBadge={handleAcceptBadge}
+                            deleteBadge={handleDeleteBadge}
                         />
-                    )) : (
+                    )) : !noBadges ? 
+                    (
                         <>
                             <li className="badges__load"></li>
                             <li className="badges__load"></li>
@@ -38,7 +66,7 @@ export default function BadgesLayout(){
                             <li className="badges__load"></li>
                             <li className="badges__load"></li>
                         </>
-                    )
+                    ) : <p>Não existem emblemas cadastrados</p>
                 }
             </ul>
             <style>{`

@@ -123,8 +123,6 @@ export default function MainLayout({ userInfo }){
                 <StaffInlineMenu>
                     <li onClick={handleNavigatorClick} ref_item="badges" className="active">Pedidos de Emblemas</li>
                     <li onClick={handleNavigatorClick} ref_item="notions">Quadro de Notas</li>
-                    <li onClick={handleNavigatorClick} ref_item="users">Usuários</li>
-                    <li onClick={handleNavigatorClick} ref_item="system_notifications">Eventos</li>
                 </StaffInlineMenu>
 
                 <div className="in__columns">

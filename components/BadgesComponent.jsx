@@ -1,6 +1,6 @@
 import { FaCheckCircle, FaTimesCircle, FaUser } from "react-icons/fa";
 
-export default function BadgesComponent({ username, image, pid, order, ...rest }){
+export default function BadgesComponent({ username, image, pid, order, acceptBadge, deleteBadge, ...rest }){
     return (
         <li className="badge__box" {...rest}>
             <img src={image} alt={username}/>
@@ -12,8 +12,8 @@ export default function BadgesComponent({ username, image, pid, order, ...rest }
             </div>
 
             <div className="__buttons">
-                <FaCheckCircle className="accept" size={30}/>
-                <FaTimesCircle className="delete" size={30}/>
+                <FaCheckCircle className="accept" size={30} onClick={() => acceptBadge(order)}/>
+                <FaTimesCircle className="delete" size={30} onClick={() => deleteBadge(order)}/>
             </div>
 
             <style>{`
